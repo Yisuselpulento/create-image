@@ -40,14 +40,12 @@ const Genero = () => {
               <span className="text-white font-semibold">{generoData[key]}%</span>
               <button
                 onClick={() => handleDelete(key)}
-                className="text-red-500 hover:text-red-700"
+                 className="text-red-500 hover:text-red-700 text-xs"
               >
                 <FaTrash />
               </button>
             </div>
           </div>
-
-          <ProgressBar value={generoData[key]} color="bg-orange-500" />
 
           <input
             type="range"

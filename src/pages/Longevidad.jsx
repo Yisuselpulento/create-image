@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { useOutletContext } from "react-router-dom"
-import ProgressBar from "../components/ProgressBar"
 import { FaTrash } from "react-icons/fa"
 
 const Longevidad = () => {
@@ -40,14 +39,12 @@ const Longevidad = () => {
               <span className="text-white font-semibold">{longevidadData[key]}%</span>
               <button
                 onClick={() => handleDelete(key)}
-                className="text-red-500 hover:text-red-700"
+                className="text-red-500 hover:text-red-700 text-xs"
               >
                 <FaTrash />
               </button>
             </div>
           </div>
-
-          <ProgressBar value={longevidadData[key]} color="bg-orange-500" />
 
           <input
             type="range"

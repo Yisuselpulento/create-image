@@ -40,14 +40,12 @@ const Estela = () => {
               <span className="text-white font-semibold">{estelaData[key]}%</span>
               <button
                 onClick={() => handleDelete(key)}
-                className="text-red-500 hover:text-red-700"
+                className="text-red-500 hover:text-red-700 text-xs"
               >
                 <FaTrash />
               </button>
             </div>
           </div>
-
-          <ProgressBar value={estelaData[key]} color="bg-orange-500" />
 
           <input
             type="range"

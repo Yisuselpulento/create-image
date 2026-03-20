@@ -1,3 +1,5 @@
+import { getColor } from "../utils/getColor";
+
 const PreviewEstela = ({ data }) => {
   return (
     <div className="text-white p-4 mt-6 opacity-80">
@@ -11,7 +13,7 @@ const PreviewEstela = ({ data }) => {
           {/* BARRA */}
           <div className="flex-1 h-2 bg-gray-700 rounded">
             <div
-              className="h-2 rounded bg-orange-300"
+              className={`h-2 rounded ${getColor(data[key])}`}
               style={{ width: `${data[key]}%` }}
             />
           </div>
@@ -21,7 +23,7 @@ const PreviewEstela = ({ data }) => {
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default PreviewEstela
+export default PreviewEstela;
