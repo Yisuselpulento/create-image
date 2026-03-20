@@ -51,9 +51,9 @@ const PreviewCuandoUsarlo = ({ data }) => {
               {/* CONTENIDO */}
               <div className="flex-1">
 
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs font-medium">
                   <span className="capitalize text-orange-200">{key}</span>
-                  <span className="text-orange-200">{data[key]}%</span>
+                  <span className="text-white">{data[key]}%</span>
                 </div>
 
               <ProgressBar 
