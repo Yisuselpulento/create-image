@@ -7,6 +7,8 @@ import { useDownloadImage } from "../hooks/useDownloadImage"
 
 import PreviewCuandoUsarlo from "../components/PreviewCuandoUsarlo"
 import PreviewLongevidad from "../components/PreviewLongevidad" // crearás este componente
+import PreviewEstela from "../components/PreviewEstela"
+import PreviewGenero from "../components/PreviewGenero"
 
 const MainLayout = () => {
   const [showPreview, setShowPreview] = useState(true)
@@ -33,6 +35,14 @@ const MainLayout = () => {
   { name: "Estela", path: "/estela" },
 ]
 
+const [generoData, setGeneroData] = useState({
+  Femenino: 25,
+  "Unisex inclinación femenina": 50,
+  "Unisex neutro": 50,
+  "Unisex con inclinación masculina": 50,
+  Masculino: 75,
+})
+
   const initialLongevidad = {
   Debil: 25,
   Moderada: 50,
@@ -40,8 +50,18 @@ const MainLayout = () => {
   "Muy Duradera": 100,
 }
 
+const initialEstela = {
+  Suave: 25,
+  Moderada: 50,
+  Pesada: 75,
+  Enorme: 100,
+}
+
+
   const [longevidadData, setLongevidadData] = useState(initialLongevidad)
   const [perfumeName, setPerfumeName] = useState("")
+  const [estelaData, setEstelaData] = useState(initialEstela)
+  const [percepcionGenero, setPercepcionGenero] = useState("")
 
   // --- DEFINIR SECCIÓN ACTIVA ---
   const sectionName = location.pathname.replace("/", "") || "acordes"
@@ -49,6 +69,8 @@ const MainLayout = () => {
   const sectionMap = {
     "cuando-usarlo": { data: cuandoUsarloData, PreviewComponent: PreviewCuandoUsarlo },
     "longevidad": { data: longevidadData, PreviewComponent: PreviewLongevidad },
+     "estela": { data: estelaData, PreviewComponent: PreviewEstela },
+      "genero": { data: generoData, PreviewComponent: PreviewGenero, extraProps: { percepcionGenero } }
     // agrega aquí otras secciones luego
   }
 
@@ -83,28 +105,38 @@ const MainLayout = () => {
           );
         })}
       </nav>
-        <Outlet
-          context={{
-            cuandoUsarloData,
-            setCuandoUsarloData,
-            longevidadData,
-            setLongevidadData,
-          }}
-        />
+      <Outlet
+      context={{
+        cuandoUsarloData,
+        setCuandoUsarloData,
+        longevidadData,
+        setLongevidadData,
+        estelaData,
+        setEstelaData,
+        generoData,
+        setGeneroData,
+        percepcionGenero,
+        setPercepcionGenero,
+      }}
+    />
       </div>
 
       {/* DRAWER */}
-      <PreviewDrawer
-        show={showPreview}
-        setShow={setShowPreview}
-        previewRef={previewRef}
-        data={currentSection.data}
-        PreviewComponent={currentSection.PreviewComponent}
-        perfumeName={perfumeName}
-        setPerfumeName={setPerfumeName}
-        download={download}
-        fileName={fileName}
-      />
+     <PreviewDrawer
+  show={showPreview}
+  setShow={setShowPreview}
+  previewRef={previewRef}
+  data={currentSection.data}
+  PreviewComponent={(props) =>
+    sectionName === "genero"
+      ? <PreviewGenero {...props} percepcionGenero={percepcionGenero} />
+      : <currentSection.PreviewComponent {...props} />
+  }
+  perfumeName={perfumeName}
+  setPerfumeName={setPerfumeName}
+  download={download}
+  fileName={fileName}
+/>
 
     </div>
     

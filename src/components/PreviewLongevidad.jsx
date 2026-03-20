@@ -1,7 +1,7 @@
 const PreviewLongevidad = ({ data }) => {
   return (
     <div className="text-white p-4 mt-6 opacity-80">
-      <h1 className="text-center text-lg font-semibold  mb-15">Longevidad</h1>
+      <h1 className="text-center text-lg font-semibold  mb-15">LONGEVIDAD</h1>
 
       {Object.keys(data).map((key) => (
         <div key={key} className="flex items-center gap-3 mb-3">
