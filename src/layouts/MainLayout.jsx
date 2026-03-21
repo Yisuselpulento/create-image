@@ -21,7 +21,11 @@ const MainLayout = () => {
   const [perfumeName, setPerfumeName] = useState("Dior Sauvage");
 
   // --- SECCIONES ---
-  const [acordesData, setAcordesData] = useState([]);
+  const [acordesData, setAcordesData] = useState({
+  perfume: "Dior Sauvage",
+  acordes: [],
+});
+
   const [cuandoUsarloData, setCuandoUsarloData] = useState({
     invierno: 50,
     primavera: 50,
