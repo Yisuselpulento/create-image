@@ -29,14 +29,14 @@ const Longevidad = () => {
 
   return (
     <div className="w-full max-w-md p-2">
-      <h2 className="text-lg ">Longevidad</h2>
+     <h2 className="mb-4">Configuración</h2>
 
       {Object.keys(longevidadData).map((key) => (
         <div key={key} className="mt-1">
-          <div className="flex justify-between items-center mb-1">
-            <span className="capitalize text-white font-medium">{key}</span>
+          <div className="flex justify-between items-center">
+            <span className="capitalize text-white ">{key}</span>
             <div className="flex items-center gap-2">
-              <span className="text-white font-semibold">{longevidadData[key]}%</span>
+              <span className="text-white font-semibold text-xs">{longevidadData[key]}%</span>
               <button
                 onClick={() => handleDelete(key)}
                 className="text-red-500 hover:text-red-700 text-xs"
@@ -52,7 +52,7 @@ const Longevidad = () => {
             max="100"
             value={longevidadData[key]}
             onChange={(e) => handleChange(key, e.target.value)}
-            className="w-full mt-1"
+            className="w-full mt-1 accent-blue-800"
           />
         </div>
       ))}
@@ -68,7 +68,7 @@ const Longevidad = () => {
         />
         <button
           onClick={handleAdd}
-          className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded"
+          className="bg-indigo-600 text-xs hover:bg-indigo-700 px-3 py-1 rounded"
         >
           Agregar
         </button>

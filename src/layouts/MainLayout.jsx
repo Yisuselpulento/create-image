@@ -93,7 +93,7 @@ const MainLayout = () => {
   return (
     <div className="h-screen flex bg-stone-950 text-white overflow-hidden">
       {/* --- SIDEBAR --- */}
-      <div className="w-[400px] p-4 overflow-y-auto border-r border-zinc-800">
+      <div className="w-[400px] p-2 overflow-y-auto border-r border-zinc-800">
         {/* Navegación */}
         <nav className="flex flex-wrap gap-2 mb-4 text-sm">
           {sections.map((section) => {

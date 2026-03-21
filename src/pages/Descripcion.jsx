@@ -54,8 +54,8 @@ const Descripcion = () => {
   }
 
   return (
-    <div className="p-4 text-white bg-stone-950 min-h-screen">
-      <h1 className="text-2xl mb-4 text-center">Descripción del Perfume</h1>
+    <div className="text-white bg-stone-950 min-h-screen p-2">
+      <h2 className="mb-4">Configuración</h2>
 
       {/* Marca y Perfume */}
       <div className="mb-4">
@@ -87,7 +87,7 @@ const Descripcion = () => {
         />
         <button
           onClick={handleGuardarInfo}
-          className="bg-purple-700 px-4 py-2 rounded hover:bg-purple-800 mb-4"
+          className="bg-indigo-600 text-xs hover:bg-indigo-700 px-3 py-1 rounded"
         >
           Guardar Información
         </button>
@@ -115,7 +115,7 @@ const Descripcion = () => {
           onChange={(e) => setNotaNombre(e.target.value)}
         />
 
-        <label className="inline-block mr-2 mb-2 px-4 py-2 bg-purple-700 hover:bg-purple-800 rounded cursor-pointer text-white">
+        <label className="inline-block mr-2 mb-2 px-4 py-2 bg-blue-700 hover:bg-blue-800 rounded cursor-pointer text-white">
           {notaImagen ? "Imagen seleccionada" : "Seleccionar imagen"}
           <input
             type="file"
@@ -127,7 +127,7 @@ const Descripcion = () => {
 
         <button
           onClick={handleAddNota}
-          className="bg-purple-700 px-4 py-2 rounded hover:bg-purple-800"
+          className="bg-indigo-600 text-xs hover:bg-indigo-700 px-3 py-1 rounded"
         >
           Agregar Nota
         </button>

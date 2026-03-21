@@ -23,16 +23,16 @@ const Genero = () => {
 
   return (
     <div className="w-full max-w-md p-2">
-      <h2 className="text-lg">Género</h2>
+      <h2 className="mb-4"  >Configuración</h2>
 
       {Object.keys(generoData)
         .filter((key) => key !== "percepcion")
         .map((key) => (
-          <div key={key} className="mt-1">
+          <div key={key} >
             <div className="flex justify-between items-center mb-1">
               <span className="capitalize text-white font-medium">{key}</span>
               <div className="flex items-center gap-2">
-                <span className="text-white font-semibold">{generoData[key]}%</span>
+                <span className="text-white font-semibold text-xs">{generoData[key]}%</span>
                 <button
                   onClick={() => handleDelete(key)}
                   className="text-red-500 hover:text-red-700 text-xs"
@@ -48,7 +48,7 @@ const Genero = () => {
               max="100"
               value={generoData[key]}
               onChange={(e) => handleChange(key, e.target.value)}
-              className="w-full mt-1"
+              className="w-full accent-blue-800"
             />
           </div>
         ))}
@@ -64,7 +64,7 @@ const Genero = () => {
         />
         <button
           onClick={handleAdd}
-          className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded"
+            className="bg-indigo-600 text-xs hover:bg-indigo-700 px-3 py-1 rounded"
         >
           Agregar
         </button>
@@ -72,7 +72,7 @@ const Genero = () => {
 
       {/* Percepción de género */}
       <div className="mt-6">
-        <label className="block mb-1 font-medium">Percepción de género</label>
+        <label className="block mb-1">Percepción de género</label>
         <input
           type="text"
           placeholder="Escribe tu percepción"
