@@ -26,7 +26,7 @@ const MainLayout = () => {
     invierno: 50,
     primavera: 50,
     verano: 50,
-    otono: 50,
+    otoño: 50,
     dia: 50,
     noche: 50,
   });
@@ -48,9 +48,8 @@ const MainLayout = () => {
     "Unisex neutro": 50,
     "Unisex con inclinación masculina": 50,
     Masculino: 75,
+    percepcion: "",
   });
-  const [percepcionGenero, setPercepcionGenero] = useState("");
-
   const [descripcionData, setDescripcionData] = useState({
     marca: "",
     perfume: "",
@@ -80,7 +79,7 @@ const MainLayout = () => {
     "cuando-usarlo": { data: cuandoUsarloData, PreviewComponent: PreviewCuandoUsarlo },
     longevidad: { data: longevidadData, PreviewComponent: PreviewLongevidad },
     estela: { data: estelaData, PreviewComponent: PreviewEstela },
-    genero: { data: generoData, PreviewComponent: PreviewGenero, extraProps: { percepcionGenero } },
+    genero: { data: generoData, PreviewComponent: PreviewGenero },
     descripcion: { data: descripcionData, PreviewComponent: PreviewDescripcion },
   };
 
@@ -105,8 +104,8 @@ const MainLayout = () => {
                 to={section.path}
                 className={`px-3 py-1 rounded cursor-pointer transition ${
                   isActive
-                    ? "bg-purple-800 text-white font-semibold"
-                    : "bg-purple-600 hover:bg-purple-700 text-white"
+                    ? "bg-indigo-600 text-white font-semibold"
+                    : "bg-indigo-800 hover:bg-indigo-600 text-white"
                 }`}
               >
                 {section.name}
@@ -118,26 +117,18 @@ const MainLayout = () => {
         {/* --- OUTLET / SECCIÓN --- */}
         <Outlet
           context={{
-            // Acordes
             acordesData,
             setAcordesData,
             perfumeName,
             setPerfumeName,
-            // Cuando usarlo
             cuandoUsarloData,
             setCuandoUsarloData,
-            // Longevidad
             longevidadData,
             setLongevidadData,
-            // Estela
             estelaData,
             setEstelaData,
-            // Género
             generoData,
             setGeneroData,
-            percepcionGenero,
-            setPercepcionGenero,
-            // Descripción
             descripcionData,
             setDescripcionData,
           }}
@@ -150,11 +141,7 @@ const MainLayout = () => {
         setShow={setShowPreview}
         previewRef={previewRef}
         data={currentSection.data}
-        PreviewComponent={(props) =>
-          sectionName === "genero"
-            ? <PreviewGenero {...props} percepcionGenero={percepcionGenero} />
-            : <currentSection.PreviewComponent {...props} perfumeName={perfumeName} />
-        }
+        PreviewComponent={(props) => <currentSection.PreviewComponent {...props} />}
         perfumeName={perfumeName}
         setPerfumeName={setPerfumeName}
         download={() => download(previewRef, fileName)}

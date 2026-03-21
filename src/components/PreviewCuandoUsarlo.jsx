@@ -20,7 +20,7 @@ const PreviewCuandoUsarlo = ({ data }) => {
   { key: "invierno", icon: FaRegSnowflake, color: "text-blue-300", bg: "bg-blue-400" },
   { key: "primavera", icon: FaLeaf, color: "text-green-400", bg: "bg-green-400" },
   { key: "verano", icon: MdBeachAccess, color: "text-yellow-400", bg: "bg-yellow-400" },
-  { key: "otono", icon: FaLeaf, color: "text-orange-400", bg: "bg-orange-400" },
+  { key: "otoño", icon: FaLeaf, color: "text-orange-400", bg: "bg-orange-400" },
 ]
 
 
