@@ -1,47 +1,48 @@
-import { useState } from "react"
-import { useOutletContext } from "react-router-dom"
-import { FaTrash } from "react-icons/fa"
+import { useState } from "react";
+import { useOutletContext } from "react-router-dom";
+import { FaTrash } from "react-icons/fa";
+import ImageThumb from "../components/ImageThumb"; // Asegúrate de la ruta correcta
 
 const Descripcion = () => {
-  const { descripcionData, setDescripcionData } = useOutletContext()
+  const { descripcionData, setDescripcionData } = useOutletContext();
 
   // Estado local para inputs temporales
-  const [marca, setMarca] = useState(descripcionData.marca || "")
-  const [perfume, setPerfume] = useState(descripcionData.perfume || "")
-  const [descripcion, setDescripcion] = useState(descripcionData.descripcion || "")
+  const [marca, setMarca] = useState(descripcionData.marca || "");
+  const [perfume, setPerfume] = useState(descripcionData.perfume || "");
+  const [descripcion, setDescripcion] = useState(descripcionData.descripcion || "");
 
   // Notas
-  const [notaTipo, setNotaTipo] = useState("salida") // salida, corazon, fondo
-  const [notaNombre, setNotaNombre] = useState("")
-  const [notaImagen, setNotaImagen] = useState(null)
+  const [notaTipo, setNotaTipo] = useState("salida"); // salida, corazon, fondo
+  const [notaNombre, setNotaNombre] = useState("");
+  const [notaImagen, setNotaImagen] = useState(null);
 
   // Manejar agregar nota
   const handleAddNota = () => {
-    if (!notaNombre) return
+    if (!notaNombre) return;
 
     const newNota = {
       name: notaNombre,
-      image: notaImagen ? URL.createObjectURL(notaImagen) : null
-    }
+      image: notaImagen ? URL.createObjectURL(notaImagen) : null,
+    };
 
     setDescripcionData((prev) => {
-      const updatedNotas = { ...prev.notas }
-      updatedNotas[notaTipo] = [...(updatedNotas[notaTipo] || []), newNota]
-      return { ...prev, notas: updatedNotas }
-    })
+      const updatedNotas = { ...prev.notas };
+      updatedNotas[notaTipo] = [...(updatedNotas[notaTipo] || []), newNota];
+      return { ...prev, notas: updatedNotas };
+    });
 
-    setNotaNombre("")
-    setNotaImagen(null)
-  }
+    setNotaNombre("");
+    setNotaImagen(null);
+  };
 
   // Manejar eliminar nota
   const handleRemoveNota = (tipo, index) => {
     setDescripcionData((prev) => {
-      const updatedNotas = { ...prev.notas }
-      updatedNotas[tipo] = updatedNotas[tipo].filter((_, i) => i !== index)
-      return { ...prev, notas: updatedNotas }
-    })
-  }
+      const updatedNotas = { ...prev.notas };
+      updatedNotas[tipo] = updatedNotas[tipo].filter((_, i) => i !== index);
+      return { ...prev, notas: updatedNotas };
+    });
+  };
 
   // Manejar guardar marca, perfume y descripcion
   const handleGuardarInfo = () => {
@@ -49,9 +50,9 @@ const Descripcion = () => {
       ...prev,
       marca,
       perfume,
-      descripcion
-    }))
-  }
+      descripcion,
+    }));
+  };
 
   return (
     <div className="text-white bg-stone-950 min-h-screen p-2">
@@ -115,19 +116,12 @@ const Descripcion = () => {
           onChange={(e) => setNotaNombre(e.target.value)}
         />
 
-        <label className="inline-block mr-2 mb-2 px-4 py-2 bg-blue-700 hover:bg-blue-800 rounded cursor-pointer text-white">
-          {notaImagen ? "Imagen seleccionada" : "Seleccionar imagen"}
-          <input
-            type="file"
-            accept="image/*"
-            className="hidden"
-            onChange={(e) => setNotaImagen(e.target.files[0])}
-          />
-        </label>
+        {/* Aquí usamos ImageThumb para selección + preview */}
+        <ImageThumb imageFile={notaImagen} setImageFile={setNotaImagen} />
 
         <button
           onClick={handleAddNota}
-          className="bg-indigo-600 text-xs hover:bg-indigo-700 px-3 py-1 rounded"
+          className="bg-indigo-600  hover:bg-indigo-700 px-3 py-1 rounded mt-2"
         >
           Agregar Nota
         </button>
@@ -136,14 +130,24 @@ const Descripcion = () => {
       {/* Mostrar Notas */}
       {["salida", "corazon", "fondo"].map((tipo) => (
         <div key={tipo} className="mb-4">
-          <h3 className="text-lg capitalize mb-2">{tipo === "salida" ? "Notas de Salida" : tipo === "corazon" ? "Notas de Corazón" : "Notas de Fondo"}</h3>
+          <h3 className="capitalize mb-2">
+            {tipo === "salida"
+              ? "Notas de Salida"
+              : tipo === "corazon"
+              ? "Notas de Corazón"
+              : "Notas de Fondo"}
+          </h3>
           {descripcionData.notas[tipo]?.length === 0 && (
             <p className="text-sm text-zinc-400">No hay notas agregadas</p>
           )}
           {descripcionData.notas[tipo]?.map((nota, i) => (
             <div key={i} className="flex items-center gap-2 mb-2">
               {nota.image && (
-                <img src={nota.image} alt={nota.name} className="h-8 w-8 object-cover rounded" />
+                <img
+                  src={nota.image}
+                  alt={nota.name}
+                  className="h-8 w-8 object-cover rounded"
+                />
               )}
               <span className="text-white">{nota.name}</span>
               <button
@@ -157,7 +161,7 @@ const Descripcion = () => {
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default Descripcion
+export default Descripcion;

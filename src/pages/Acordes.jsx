@@ -1,35 +1,36 @@
-import { useState } from "react"
-import { useOutletContext } from "react-router-dom"
+import { useState } from "react";
+import { useOutletContext } from "react-router-dom";
+import ImageThumb from "../components/ImageThumb"; // Ajusta la ruta según tu proyecto
 
 const Acordes = () => {
-  const { acordesData, setAcordesData, perfumeName, setPerfumeName } = useOutletContext()
+  const { acordesData, setAcordesData, perfumeName, setPerfumeName } = useOutletContext();
 
-  const [acordeName, setAcordeName] = useState("")
-  const [acordePercentage, setAcordePercentage] = useState(50)
-  const [acordeColor, setAcordeColor] = useState("#4ade80")
-  const [acordeImage, setAcordeImage] = useState(null)
+  const [acordeName, setAcordeName] = useState("");
+  const [acordePercentage, setAcordePercentage] = useState(50);
+  const [acordeColor, setAcordeColor] = useState("#4ade80");
+  const [acordeImage, setAcordeImage] = useState(null);
 
   const handleAddAcorde = () => {
-    if (!acordeName) return
+    if (!acordeName) return;
     const newAcorde = {
       name: acordeName,
       percentage: acordePercentage,
       color: acordeColor,
       image: acordeImage ? URL.createObjectURL(acordeImage) : null,
-    }
-    setAcordesData([...acordesData, newAcorde])
+    };
+    setAcordesData([...acordesData, newAcorde]);
 
     // Limpiar campos
-    setAcordeName("")
-    setAcordePercentage(50)
-    setAcordeColor("#4ade80")
-    setAcordeImage(null)
-  }
+    setAcordeName("");
+    setAcordePercentage(50);
+    setAcordeColor("#4ade80");
+    setAcordeImage(null);
+  };
 
   const handleRemoveAcorde = (index) => {
-    const updated = acordesData.filter((_, i) => i !== index)
-    setAcordesData(updated)
-  }
+    const updated = acordesData.filter((_, i) => i !== index);
+    setAcordesData(updated);
+  };
 
   return (
     <div className="p-2 text-white bg-stone-950 min-h-screen">
@@ -72,22 +73,12 @@ const Acordes = () => {
           onChange={(e) => setAcordeColor(e.target.value)}
         />
 
-        {/* INPUT FILE COMO BOTÓN */}
-        <label
-          className="inline-block mr-2 mb-2 px-4 py-2 bg-blue-700 hover:bg-blue-800 rounded cursor-pointer text-white"
-        >
-          {acordeImage ? "Imagen seleccionada" : "Seleccionar imagen"}
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => setAcordeImage(e.target.files[0])}
-            className="hidden"
-          />
-        </label>
+        {/* Aquí usamos ImageThumb para seleccionar + preview de la imagen */}
+        <ImageThumb imageFile={acordeImage} setImageFile={setAcordeImage} />
 
         <button
           onClick={handleAddAcorde}
-          className="bg-indigo-700 px-3 py-2 rounded hover:bg-indigo-800"
+          className="bg-indigo-700 px-3 py-2 rounded hover:bg-indigo-800 mt-2"
         >
           Agregar
         </button>
@@ -124,7 +115,7 @@ const Acordes = () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Acordes
+export default Acordes;
