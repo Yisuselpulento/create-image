@@ -18,7 +18,7 @@ const PreviewDrawer = ({
         onClick={() => setShow(!show)}
         className="fixed top-4 right-4 z-[100] bg-black/60 backdrop-blur-md p-2 rounded-full border border-stone-800 text-white text-xl hover:text-orange-500 transition"
       >
-        {show ? <FaEyeSlash className="h-3 w-3 text-blue-400" /> : <FaEye className="h-3 w-3 text-blue-400" />}
+        {show ? <FaEyeSlash className="h-3 w-3 text-white" /> : <FaEye className="h-3 w-3 text-white" />}
       </button>
 
       <div
